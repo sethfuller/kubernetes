@@ -1,0 +1,38 @@
+apiVersion: v1
+items:
+- apiVersion: cronjob.tutorial.kubebuilder.io/v1
+  kind: CronJob
+  metadata:
+    creationTimestamp: "2024-03-16T15:17:57Z"
+    generation: 1
+    labels:
+      app.kubernetes.io/created-by: cronjob
+      app.kubernetes.io/instance: cronjob-sample
+      app.kubernetes.io/managed-by: kustomize
+      app.kubernetes.io/name: cronjob
+      app.kubernetes.io/part-of: cronjob
+    name: cronjob-sample
+    namespace: default
+    resourceVersion: "261420"
+    uid: 3fc7508b-9154-48c7-a47e-e9ab27ebe24d
+  spec:
+    concurrencyPolicy: Allow
+    jobTemplate:
+      spec:
+        template:
+          spec:
+            containers:
+            - args:
+              - /bin/sh
+              - -c
+              - date; echo Hello from the Kubernetes cluster
+              image: busybox
+              name: hello
+            restartPolicy: OnFailure
+    schedule: '*/1 * * * *'
+    startingDeadlineSeconds: 60
+  status:
+    lastScheduleTime: "2024-03-16T17:09:00Z"
+kind: List
+metadata:
+  resourceVersion: ""

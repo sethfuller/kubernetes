@@ -1,0 +1,34 @@
+# https://book.kubebuilder.io/cronjob-tutorial/running
+apiVersion: cronjob.tutorial.kubebuilder.io/v1
+kind: CronJob
+metadata:
+  creationTimestamp: "2024-03-16T17:18:11Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/created-by: cronjob
+    app.kubernetes.io/instance: cronjob-second
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: cronjob
+    app.kubernetes.io/part-of: cronjob
+  name: cronjob-second
+  namespace: default
+  resourceVersion: "262980"
+  uid: e14fc615-e016-4a3f-b56c-93c7ea252544
+spec:
+  concurrencyPolicy: Allow
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - args:
+            - /bin/sh
+            - -c
+            - date; echo What hath dog wrought
+            image: busybox
+            name: second
+          restartPolicy: OnFailure
+  schedule: '*/1 * * * *'
+  startingDeadlineSeconds: 60
+status:
+  lastScheduleTime: "2024-03-16T17:22:00Z"
